@@ -242,7 +242,7 @@ d3.json('{{ url_for('static', filename='data.json')}}', function (error, rawData
 
   var data = rawData.map(function (d) {
     return {
-      date:  parseDate(d.date),
+      date:  Date.parse(d.date),
       pct05: d.pct05 / 1000,
       pct25: d.pct25 / 1000,
       pct50: d.pct50 / 1000,
@@ -250,6 +250,8 @@ d3.json('{{ url_for('static', filename='data.json')}}', function (error, rawData
       pct95: d.pct95 / 1000
     };
   });
+
+  console.log()
 
   d3.json('{{ url_for('static', filename='markers.json')}}', function (error, markerData) {
     if (error) {
